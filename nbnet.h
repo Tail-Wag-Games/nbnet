@@ -1447,6 +1447,11 @@ typedef struct NBN_GameServer
 extern NBN_GameServer nbn_game_server;
 
 /**
+ * Returns number of connected clients.
+ */
+uint32_t NBN_GameServer_GetClientCount(void);
+
+/**
  * Initialize the game server. This function must be called before any other nbnet functions.
  *
  * @param protocol_name A unique protocol name, the clients and the server must use the same one or they won't be able to communicate
@@ -5509,6 +5514,11 @@ static int GameServer_HandleEvent(void);
 static int GameServer_HandleMessageReceivedEvent(void);
 static int GameServer_SendCryptoPublicInfoTo(NBN_Connection *);
 static int GameServer_StartEncryption(NBN_Connection *);
+
+uint32_t NBN_GameServer_GetClientCount(void)
+{
+    return GameServer_GetClientCount();
+}
 
 void NBN_GameServer_Init(const char *protocol_name, uint16_t port, bool encryption)
 {
